@@ -9,7 +9,6 @@ RUN unzip pocketbase_0.18.10_linux_amd64.zip
 FROM oven/bun:1-alpine as elysia-setup
 
 COPY package.json .
-COPY bun.lockb .
 
 RUN /usr/local/bin/bun install --production
 
@@ -26,4 +25,4 @@ COPY --from=elysia-setup /home/bun/app/node_modules .
 RUN mkdir /pocketbase
 COPY --from=elysia-setup /home/bun/app/pocketbase ./pocketbase/
 
-CMD pocketbase/pocketbase serve --http=0.0.0.0:8090 & /usr/local/bin/bun run src/index.ts
+CMD pocketbase/pocketbase serve --http=0.0.0.0:8090 & bun run src/index.ts

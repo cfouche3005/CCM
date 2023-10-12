@@ -10,7 +10,7 @@ FROM oven/bun:1-alpine as elysia-setup
 
 COPY package.json .
 
-RUN /usr/local/bin/bun install --production
+RUN /usr/local/bin/bun install
 
 FROM oven/bun:1-alpine as final
 

@@ -1,4 +1,4 @@
-FROM oven/bun:latest as pb-setup
+FROM oven/bun:1-alpine as pb-setup
 
 RUN apk add wget unzip
 

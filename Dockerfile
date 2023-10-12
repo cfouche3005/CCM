@@ -10,7 +10,7 @@ FROM oven/bun:1-alpine as elysia-setup
 
 COPY package.json .
 
-RUN /usr/local/bin/bun install
+RUN /usr/local/bin/bun install 
 
 FROM oven/bun:1-alpine as final
 
@@ -23,6 +23,6 @@ COPY --from=elysia-setup /home/bun/app/bun.lockb .
 COPY --from=elysia-setup /home/bun/app/node_modules .
 
 RUN mkdir /pocketbase
-COPY --from=elysia-setup /home/bun/app/pocketbase ./pocketbase/
+COPY --from=pb-setup /home/bun/app/pocketbase ./pocketbase/
 
 CMD pocketbase/pocketbase serve --http=0.0.0.0:8090 & bun run src/index.ts

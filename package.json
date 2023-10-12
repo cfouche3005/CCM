@@ -3,10 +3,11 @@
   "version": "1.0.50",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts"
+    "dev": "pocketbase/pocketbase serve --http=0.0.0.0:8090 & bun run --watch src/index.ts"
   },
   "dependencies": {
-    "elysia": "latest"
+    "elysia": "latest",
+    "pocketbase": "^0.18.1"
   },
   "devDependencies": {
     "bun-types": "latest"

@@ -43,6 +43,8 @@ async function getPBdata(auth :authData,project :string) {
 }
 
 function nftyParser(pocketbasedata: any,newreleasedata: any){
+    console.log(pocketbasedata)
+    console.log(newreleasedata)
     const ntfy: nftyJSON = {
         topic : pocketbasedata.topic,
         title : pocketbasedata.name + " " + newreleasedata.version,

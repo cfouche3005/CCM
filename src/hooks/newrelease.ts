@@ -1,5 +1,6 @@
 import { Elysia } from "elysia";
 import PocketBase from 'pocketbase';
+import { requestLogger } from "../log/log";
 
 
 
@@ -72,6 +73,7 @@ function sendToNtfy(ntfyBody :nftyJSON) {
 
 const newrelease = new Elysia()
         .post("/newrelease",async (context : any) => {
+            requestLogger(context)
             sendToNtfy(nftyParser(await getPBdata(basicAuthParser(context.headers.authorization || ""),context.body.project), context.body))
         })
 

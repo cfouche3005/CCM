@@ -16,7 +16,6 @@ FROM oven/bun:1-alpine as final
 
 COPY src src
 COPY tsconfig.json .
-COPY .env .
 
 COPY --from=elysia-setup /home/bun/app/package.json .
 COPY --from=elysia-setup /home/bun/app/bun.lockb .

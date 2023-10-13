@@ -24,6 +24,7 @@ interface nftyJSON {
 }
 
 function basicAuthParser(authHeader :string){
+    console.count("Parsing Auth Headers")
     const authArray: string[] = Buffer.from(authHeader.split(' ')[1],'base64').toString().split(':');
     const authData: authData = {
         user : authArray[0],
@@ -33,18 +34,21 @@ function basicAuthParser(authHeader :string){
 }
 
 async function getPBdata(auth :authData,project :string) {
+    console.count("Get Data from PocketBase")
     const pb = new PocketBase('http://127.0.0.1:8090');
+    console.count("Get Data from PocketBase")
     const pbAuth = await pb.collection('users').authWithPassword(auth.user,auth.password);
+    console.count("Get Data from PocketBase")
     const software = await pb.collection('monitored_software').getFirstListItem(`project="${project}"`, {
         expand: "provider"
     })
+    console.count("Get Data from PocketBase")
     pb.authStore.clear();
     return software
 }
 
 function nftyParser(pocketbasedata: any,newreleasedata: any){
-    console.log(pocketbasedata)
-    console.log(newreleasedata)
+    console.count("Parse data for Ntfy")
     const ntfy: nftyJSON = {
         topic : pocketbasedata.topic,
         title : pocketbasedata.name + " " + newreleasedata.version,
@@ -64,6 +68,7 @@ function nftyParser(pocketbasedata: any,newreleasedata: any){
 }
 
 function sendToNtfy(ntfyBody :nftyJSON) {
+    console.count("Send data to Ntfy")
     fetch('https://'+ process.env.NTFY_DOMAIN || "ntfy.sh",{
         method: "POST",
         body: JSON.stringify(ntfyBody),

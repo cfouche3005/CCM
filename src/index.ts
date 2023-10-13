@@ -19,7 +19,7 @@ app.get("/ping",() => new Response(
     }
 ))
 
-app.listen(process.env.PORT || 8080)
+app.listen(process.env.CCM_PORT || 8080)
 
 console.log(
   `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`

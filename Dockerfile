@@ -24,4 +24,4 @@ COPY --from=elysia-setup /home/bun/app/node_modules node_modules
 RUN mkdir /pocketbase
 COPY --from=pb-setup /home/bun/app/pocketbase ./pocketbase/
 
-CMD pocketbase/pocketbase serve --http=0.0.0.0:8090 & /usr/local/bin/bun run /home/bun/app/src/index.ts
+CMD pocketbase/pocketbase serve --http=$PB_HTTP --encryptionEnv=PB_ENCRYPTION_KEY & /usr/local/bin/bun run /home/bun/app/src/index.ts

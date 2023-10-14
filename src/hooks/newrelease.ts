@@ -33,7 +33,7 @@ function basicAuthParser(authHeader :string){
 }
 
 async function getPBdata(auth :authData,project :string) {
-    const pb = new PocketBase('http://127.0.0.1' + (process.env.PB_PORT || 8090) );
+    const pb = new PocketBase('http://127.0.0.1:' + (process.env.PB_PORT || 8090));
     const pbAuth = await pb.collection('users').authWithPassword(auth.user,auth.password);
     const software = await pb.collection('monitored_software').getFirstListItem(`project="${project}"`, {
         expand: "provider"

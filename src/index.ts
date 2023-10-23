@@ -1,5 +1,7 @@
 import { Elysia } from "elysia";
 import { newrelease } from "./hooks/newrelease";
+import { AutoNewRelease } from "./api/newrelease";
+
 
 const webhooks = new Elysia({prefix: "/webhook"})
     .post("/",() => "Please specify an app")
@@ -18,6 +20,8 @@ app.get("/ping",() => new Response(
       }
     }
 ))
+
+await AutoNewRelease();
 
 app.listen(process.env.CCM_PORT || 8080)
 

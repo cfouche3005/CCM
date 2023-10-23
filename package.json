@@ -3,11 +3,16 @@
   "version": "1.0.50",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "pocketbase/pocketbase serve --http=0.0.0.0:8090 & bun run --watch src/index.ts"
+    "dev": "pocketbase/pocketbase serve --http=0.0.0.0:8090 & bun run --watch src/index.ts",
+    "typegen": "pocketbase-typegen --env --out src/types/pocketbase.types.ts"
   },
   "dependencies": {
+    "@types/eventsource": "^1.1.12",
     "elysia": "latest",
-    "pocketbase": "^0.18.1"
+    "eventsource": "^2.0.2",
+    "pocketbase": "^0.18.1",
+    "pocketbase-typegen": "^1.2.0",
+    "sqlite3": "^5.1.6"
   },
   "devDependencies": {
     "bun-types": "latest"

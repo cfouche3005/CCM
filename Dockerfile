@@ -2,9 +2,9 @@ FROM oven/bun:1-alpine as pb-setup
 
 RUN apk add wget unzip
 
-RUN wget https://github.com/pocketbase/pocketbase/releases/download/v0.19.0/pocketbase_0.19.0_linux_amd64.zip
+RUN wget https://github.com/pocketbase/pocketbase/releases/download/v0.19.1/pocketbase_0.19._linux_amd64.zip
 
-RUN unzip pocketbase_0.19.0_linux_amd64.zip
+RUN unzip pocketbase_0.19.1_linux_amd64.zip
 
 FROM oven/bun:1-alpine as elysia-setup
 
